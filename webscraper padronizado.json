@@ -1,0 +1,1115 @@
+[
+	{
+		"esporte": "Atletismo",
+		"descricao": [
+			"atletismo",
+			"esporte",
+			"modalidade",
+			"corrida",
+			"marcha",
+			"lançamento",
+			"salto",
+			"estádio",
+			"distância",
+			"campo",
+			"maratona"
+		]
+	},
+	{
+		"esporte": "Badminton",
+		"descricao": [
+			"badminton",
+			"esporte",
+			"raquete",
+			"volante",
+			"pena",
+			"rede",
+			"jogador"
+		]
+	},
+	{
+		"esporte": "Basquete",
+		"descricao": [
+			"basquetebol",
+			"basquete",
+			"esporte",
+			"equipe",
+			"jogador",
+			"quadra",
+			"bola",
+			"cesta",
+			"aro",
+			"drible",
+			"passe",
+			"ginásio"
+		]
+	},
+	{
+		"esporte": "Basquete 3x3",
+		"descricao": ["basquete", "equipe", "jogador", "quadra", "bola"]
+	},
+	{
+		"esporte": "Beisebol Softbol",
+		"descricao": [
+			"softbol",
+			"beisebol",
+			"esporte",
+			"taco",
+			"bola",
+			"campo",
+			"jogo",
+			"entrada",
+			"lançamento",
+			"base",
+			"jogador",
+			"ponto",
+			"corrida"
+		]
+	},
+	{
+		"esporte": "Beisebol5",
+		"descricao": ["beisebol5", "esporte", "equipe", "bola", "rebatedor"]
+	},
+	{
+		"esporte": "Biatlo",
+		"descricao": [
+			"biatlo",
+			"esporte",
+			"inverno",
+			"competição",
+			"esqui",
+			"corrida",
+			"tiro",
+			"espingarda",
+			"alvo",
+			"falha",
+			"tempo",
+			"sprint",
+			"perseguição"
+		]
+	},
+	{
+		"esporte": "Bobsled",
+		"descricao": [
+			"bobsleigh",
+			"bobsled",
+			"esporte",
+			"inverno",
+			"equipe",
+			"trenó",
+			"pista",
+			"gelo",
+			"velocidade",
+			"competição",
+			"gravidade"
+		]
+	},
+	{
+		"esporte": "Boxe",
+		"descricao": [
+			"boxe",
+			"pugilismo",
+			"esporte",
+			"combate",
+			"lutador",
+			"punho",
+			"defesa",
+			"ataque",
+			"golpe",
+			"rodada",
+			"ringue",
+			"nocaute",
+			"árbitro",
+			"pontuação",
+			"luva"
+		]
+	},
+	{
+		"esporte": "Breaking",
+		"descricao": ["breaking", "dança", "movimento", "música", "competição"]
+	},
+	{
+		"esporte": "Canoagem de Velocidade",
+		"descricao": [
+			"canoagem",
+			"velocidade",
+			"esporte",
+			"atleta",
+			"canoa",
+			"água",
+			"competição"
+		]
+	},
+	{
+		"esporte": "Canoagem Slalom",
+		"descricao": ["canoagem", "esporte", "canoa", "caiaque", "modalidade"]
+	},
+	{
+		"esporte": "Ciclismo BMX Freestyle",
+		"descricao": [
+			"bmx",
+			"ciclismo",
+			"esporte",
+			"modalidade",
+			"bicicleta",
+			"manobra",
+			"street",
+			"park",
+			"trail",
+			"flatland"
+		]
+	},
+	{
+		"esporte": "Ciclismo BMX Racing",
+		"descricao": [
+			"bmx",
+			"ciclismo",
+			"esporte",
+			"modalidade",
+			"bicicleta",
+			"racing"
+		]
+	},
+	{
+		"esporte": "Ciclismo de Estrada",
+		"descricao": [
+			"ciclismo",
+			"estrada",
+			"esporte",
+			"competição",
+			"bicicleta",
+			"ciclista",
+			"evento"
+		]
+	},
+	{
+		"esporte": "Ciclismo de Pista",
+		"descricao": ["ciclismo", "pista", "esporte", "competição", "bicicleta"]
+	},
+	{
+		"esporte": "Ciclismo Mountain Bike",
+		"descricao": [
+			"ciclismo",
+			"ciclista",
+			"mountain bike",
+			"maratona",
+			"cross country",
+			"ranking",
+			"disciplina"
+		]
+	},
+	{
+		"esporte": "Combinado nórdico",
+		"descricao": [
+			"combinado",
+			"esporte",
+			"inverno",
+			"salto",
+			"esqui",
+			"cross-country",
+			"atleta",
+			"competição",
+			"equipe",
+			"capacete",
+			"bota",
+			"bastão"
+		]
+	},
+	{
+		"esporte": "Cricket",
+		"descricao": [
+			"críquete",
+			"cricket",
+			"esporte",
+			"taco",
+			"bola",
+			"campo",
+			"arremessador",
+			"rebatedor",
+			"wicket",
+			"corrida",
+			"ponto",
+			"partida"
+		]
+	},
+	{
+		"esporte": "Curling",
+		"descricao": [
+			"curling",
+			"esporte",
+			"pista",
+			"gelo",
+			"pedra",
+			"granito",
+			"alvo",
+			"varredor",
+			"lançamento",
+			"equipe",
+			"jogador",
+			"pontuação",
+			"bastão"
+		]
+	},
+	{
+		"esporte": "Escalada",
+		"descricao": [
+			"escalada",
+			"esporte",
+			"atividade",
+			"pedra",
+			"montanha",
+			"corda",
+			"equipamento",
+			"cume",
+			"estrutura",
+			"agilidade",
+			"ascensão",
+			"travessia",
+			"técnica"
+		]
+	},
+	{
+		"esporte": "Esgrima",
+		"descricao": [
+			"esgrima",
+			"esporte",
+			"combate",
+			"adversário",
+			"lâmina",
+			"florete",
+			"espada",
+			"sabre",
+			"toque",
+			"arma"
+		]
+	},
+	{
+		"esporte": "Esqui alpino",
+		"descricao": [
+			"esqui",
+			"esporte",
+			"inverno",
+			"pista",
+			"competição",
+			"percurso",
+			"descida",
+			"velocidade",
+			"neve",
+			"porta",
+			"downhill",
+			"slalom"
+		]
+	},
+	{
+		"esporte": "Esqui cross-country",
+		"descricao": [
+			"esqui",
+			"cross-country",
+			"esporte",
+			"atleta",
+			"corrida",
+			"percurso",
+			"competição"
+		]
+	},
+	{
+		"esporte": "Esqui de Montanha",
+		"descricao": [
+			"esqui",
+			"montanha",
+			"esporte",
+			"competição",
+			"pele",
+			"subida",
+			"descida",
+			"encosta",
+			"pista",
+			"alpinista"
+		]
+	},
+	{
+		"esporte": "Esqui estilo livre",
+		"descricao": [
+			"esqui",
+			"estilo",
+			"esporte",
+			"modalidade",
+			"salto",
+			"descida",
+			"montanha",
+			"velocidade",
+			"neve",
+			"rampa",
+			"obstáculo",
+			"aerials",
+			"moguls",
+			"slopestyle",
+			"halfpipe"
+		]
+	},
+	{
+		"esporte": "Flag Football",
+		"descricao": [
+			"flag football",
+			"futebol",
+			"bandeira",
+			"jogo",
+			"cinto",
+			"jogador",
+			"equipe",
+			"defesa",
+			"ataque",
+			"descida",
+			"touchdown",
+			"conversão",
+			"campo",
+			"jarda"
+		]
+	},
+	{
+		"esporte": "Futebol",
+		"descricao": [
+			"futebol",
+			"esporte",
+			"equipe",
+			"jogador",
+			"árbitro",
+			"campo",
+			"baliza",
+			"bola",
+			"gol",
+			"partida",
+			"regra"
+		]
+	},
+	{
+		"esporte": "Futsal",
+		"descricao": [
+			"futsal",
+			"futebol",
+			"esporte",
+			"quadra",
+			"equipe",
+			"jogador",
+			"bola",
+			"meta",
+			"trave",
+			"gol",
+			"goleiro",
+			"partida"
+		]
+	},
+	{
+		"esporte": "Ginástica Acrobática",
+		"descricao": [
+			"ginástica",
+			"esporte",
+			"modalidade",
+			"competição",
+			"exercício",
+			"força",
+			"agilidade",
+			"coordenação",
+			"flexibilidade",
+			"equilíbrio",
+			"salto",
+			"rotina",
+			"movimento",
+			"música",
+			"ginasta",
+			"equipe"
+		]
+	},
+	{
+		"esporte": "Ginástica Artística",
+		"descricao": [
+			"ginástica",
+			"esporte",
+			"modalidade",
+			"exercício",
+			"aparelho",
+			"cavalo",
+			"argola",
+			"solo",
+			"barra",
+			"ginasta",
+			"força",
+			"agilidade",
+			"flexibilidade",
+			"coordenação",
+			"equilíbrio",
+			"controle"
+		]
+	},
+	{
+		"esporte": "Ginástica de Trampolim",
+		"descricao": [
+			"trampolim",
+			"ginástica",
+			"disciplina",
+			"atleta",
+			"salto",
+			"modalidade",
+			"regra"
+		]
+	},
+	{
+		"esporte": "Ginástica Rítmica",
+		"descricao": [
+			"ginástica",
+			"modalidade",
+			"movimento",
+			"balé",
+			"dança",
+			"música",
+			"aparelho",
+			"corda",
+			"arco",
+			"bola",
+			"maça",
+			"fita",
+			"competição",
+			"tablado",
+			"ritmo",
+			"técnica"
+		]
+	},
+	{
+		"esporte": "Golfe",
+		"descricao": [
+			"golfe",
+			"esporte",
+			"jogador",
+			"taco",
+			"bola",
+			"buraco",
+			"terreno",
+			"campo",
+			"tacada",
+			"tee",
+			"green",
+			"bandeira",
+			"obstáculo",
+			"pontuação"
+		]
+	},
+	{
+		"esporte": "Handebol",
+		"descricao": [
+			"handebol",
+			"andebol",
+			"esporte",
+			"campo",
+			"área",
+			"baliza",
+			"gol",
+			"equipe",
+			"jogador",
+			"bola"
+		]
+	},
+	{
+		"esporte": "Handebol de Praia",
+		"descricao": [
+			"handebol",
+			"andebol",
+			"praia",
+			"jogo",
+			"equipe",
+			"passe",
+			"bola",
+			"gol",
+			"campo",
+			"areia",
+			"goleiro",
+			"jogador"
+		]
+	},
+	{
+		"esporte": "Hipismo",
+		"descricao": [
+			"hipismo",
+			"esporte",
+			"modalidade",
+			"cavalo",
+			"salto",
+			"adestramento",
+			"corrida",
+			"atrelagem",
+			"equitação",
+			"cavalgada",
+			"treinamento",
+			"equilíbrio"
+		]
+	},
+	{
+		"esporte": "Hóquei no gelo",
+		"descricao": [
+			"hóquei",
+			"gelo",
+			"esporte",
+			"rinque",
+			"patinação",
+			"equipe",
+			"jogador",
+			"defensor",
+			"atacante",
+			"goleiro",
+			"patim",
+			"taco",
+			"disco",
+			"borracha",
+			"baliza",
+			"gol",
+			"ponto"
+		]
+	},
+	{
+		"esporte": "Hóquei sobre Grama",
+		"descricao": [
+			"hóquei",
+			"campo",
+			"grama",
+			"esporte",
+			"equipe",
+			"jogador",
+			"partida",
+			"quadra",
+			"baliza",
+			"gol",
+			"bola",
+			"taco"
+		]
+	},
+	{
+		"esporte": "Judô",
+		"descricao": [
+			"judô",
+			"arte",
+			"esporte",
+			"combate",
+			"técnica",
+			"defesa",
+			"treino",
+			"judogi",
+			"faixa",
+			"atleta",
+			"força",
+			"equilíbrio",
+			"oponente"
+		]
+	},
+	{
+		"esporte": "Karatê",
+		"descricao": [
+			"karatê",
+			"arte",
+			"luta",
+			"disciplina",
+			"combate",
+			"técnica",
+			"golpe",
+			"pontapé",
+			"soco",
+			"projeção",
+			"imobilização",
+			"bloqueio",
+			"kata",
+			"kumite",
+			"condicionamento",
+			"faixa"
+		]
+	},
+	{
+		"esporte": "Lacrosse",
+		"descricao": [
+			"lacrosse",
+			"esporte",
+			"equipe",
+			"taco",
+			"rede",
+			"jogador",
+			"bola",
+			"gol",
+			"bastão",
+			"contato",
+			"posicionamento"
+		]
+	},
+	{
+		"esporte": "Levantamento de Peso",
+		"descricao": [
+			"halterofilismo",
+			"halterofilia",
+			"levantamento",
+			"peso",
+			"esporte",
+			"atleta",
+			"barra",
+			"competição",
+			"arranco",
+			"arremesso",
+			"força",
+			"potência",
+			"flexibilidade",
+			"coordenação",
+			"equilíbrio",
+			"concentração"
+		]
+	},
+	{
+		"esporte": "Luge",
+		"descricao": ["luge", "esporte", "inverno", "descida", "trenó"]
+	},
+	{
+		"esporte": "Luta",
+		"descricao": [
+			"luta",
+			"wrestling",
+			"esporte",
+			"corpo",
+			"técnica",
+			"agarramento",
+			"arremesso",
+			"chave",
+			"golpe",
+			"competição",
+			"competidor",
+			"combate"
+		]
+	},
+	{
+		"esporte": "Luta de praia",
+		"descricao": ["luta", "praia", "areia", "atleta", "combate"]
+	},
+	{
+		"esporte": "Maratona Aquática",
+		"descricao": [
+			"nadadora",
+			"competição",
+			"prova",
+			"maratona",
+			"água",
+			"competição",
+			"medalha"
+		]
+	},
+	{
+		"esporte": "Nado Artístico",
+		"descricao": [
+			"competição",
+			"natação",
+			"sincronizar",
+			"nadadora",
+			"evento",
+			"equipe",
+			"regra"
+		]
+	},
+	{
+		"esporte": "Natação",
+		"descricao": [
+			"natação",
+			"atividade",
+			"movimento",
+			"meio",
+			"exercício",
+			"esporte"
+		]
+	},
+	{
+		"esporte": "Patinação artística",
+		"descricao": [
+			"patinação",
+			"gelo",
+			"esporte",
+			"atleta",
+			"dupla",
+			"grupo",
+			"coreografia",
+			"patim",
+			"lâmina",
+			"dança",
+			"música",
+			"salto",
+			"giro",
+			"levantamento",
+			"arremesso",
+			"sequência"
+		]
+	},
+	{
+		"esporte": "Patinação de velocidade",
+		"descricao": [
+			"patinação",
+			"velocidade",
+			"esporte",
+			"pista",
+			"gelo",
+			"prova",
+			"atleta",
+			"contrarrelógio",
+			"volta",
+			"faixa",
+			"competidor",
+			"distância",
+			"equipe"
+		]
+	},
+	{
+		"esporte": "Patinação de velocidade em pista curta",
+		"descricao": [
+			"patinação",
+			"velocidade",
+			"pista",
+			"gelo",
+			"modalidade",
+			"competição",
+			"fase",
+			"patinador",
+			"prova",
+			"revezamento",
+			"equipe",
+			"patim",
+			"lâmina"
+		]
+	},
+	{
+		"esporte": "Patinação de Velocidade Inline",
+		"descricao": [
+			"patinação",
+			"inline",
+			"velocidade",
+			"competição",
+			"modalidade",
+			"pista",
+			"estrada"
+		]
+	},
+	{
+		"esporte": "Pentatlo Moderno",
+		"descricao": [
+			"pentatlo",
+			"esporte",
+			"equipe",
+			"hipismo",
+			"esgrima",
+			"natação",
+			"tiro",
+			"corrida",
+			"desempenho",
+			"ponto",
+			"atleta"
+		]
+	},
+	{
+		"esporte": "Polo Aquático",
+		"descricao": [
+			"polo",
+			"esporte",
+			"handebol",
+			"equipe",
+			"bola",
+			"baliza",
+			"goleiro",
+			"piscina",
+			"jogo",
+			"jogador",
+			"árbitro",
+			"falta"
+		]
+	},
+	{
+		"esporte": "Remo",
+		"descricao": ["remo", "esporte", "atleta", "barco", "água"]
+	},
+	{
+		"esporte": "Remo costeiro",
+		"descricao": [
+			"competição",
+			"remo",
+			"remador",
+			"prova",
+			"evento",
+			"competidor"
+		]
+	},
+	{
+		"esporte": "Rugby Sevens",
+		"descricao": [
+			"rugby",
+			"rúgbi",
+			"esporte",
+			"variante",
+			"jogador",
+			"equipe",
+			"jogo",
+			"competição",
+			"destreza"
+		]
+	},
+	{
+		"esporte": "Salto de esqui",
+		"descricao": [
+			"salto",
+			"esqui",
+			"esporte",
+			"inverno",
+			"pista",
+			"distância",
+			"esquiador",
+			"decolagem",
+			"pouso",
+			"estilo",
+			"pontuação",
+			"técnica"
+		]
+	},
+	{
+		"esporte": "Saltos Ornamentais",
+		"descricao": [
+			"salto",
+			"água",
+			"esporte",
+			"plataforma",
+			"trampolim",
+			"movimento",
+			"queda",
+			"técnica",
+			"saltador",
+			"competição",
+			"árbitro",
+			"posição",
+			"entrada",
+			"força",
+			"flexibilidade",
+			"concentração"
+		]
+	},
+	{
+		"esporte": "Skate",
+		"descricao": [
+			"skate",
+			"skateboarding",
+			"esporte",
+			"solo",
+			"equilíbrio",
+			"manobra",
+			"obstáculo",
+			"skatista",
+			"shape",
+			"tábua",
+			"eixo",
+			"roda",
+			"rolamento",
+			"parafuso",
+			"amortecedor",
+			"lixa",
+			"capacete",
+			"joelheira",
+			"cotoveleira"
+		]
+	},
+	{
+		"esporte": "Skeleton",
+		"descricao": [
+			"skeleton",
+			"esporte",
+			"inverno",
+			"trenó",
+			"metal",
+			"pista",
+			"gelo",
+			"piloto",
+			"freio",
+			"capacete",
+			"traje",
+			"sapato",
+			"corrida"
+		]
+	},
+	{
+		"esporte": "Snowboard",
+		"descricao": [
+			"snowboard",
+			"snowboarding",
+			"surfe",
+			"neve",
+			"esporte",
+			"prancha",
+			"encosta",
+			"montanha",
+			"prendedor",
+			"pé",
+			"halfpipe",
+			"rampa",
+			"salto",
+			"manobra"
+		]
+	},
+	{
+		"esporte": "Squash",
+		"descricao": [
+			"squash",
+			"esporte",
+			"raquete",
+			"bola",
+			"borracha",
+			"jogador",
+			"dupla",
+			"quadra",
+			"parede"
+		]
+	},
+	{
+		"esporte": "Surfe",
+		"descricao": [
+			"surfe",
+			"surfing",
+			"esporte",
+			"água",
+			"surfista",
+			"prancha",
+			"onda",
+			"praia"
+		]
+	},
+	{
+		"esporte": "Taekwondo",
+		"descricao": [
+			"taekwondo",
+			"esporte",
+			"combate",
+			"técnica",
+			"defesa",
+			"mão",
+			"punho",
+			"chute",
+			"esquiva",
+			"golpe",
+			"oponente",
+			"treinamento"
+		]
+	},
+	{
+		"esporte": "Tênis",
+		"descricao": [
+			"tênis",
+			"esporte",
+			"quadra",
+			"superfície",
+			"adversário",
+			"dupla",
+			"rede",
+			"bola",
+			"raquete",
+			"ponto",
+			"ataque",
+			"defesa",
+			"serviço",
+			"saque",
+			"partida",
+			"torneio"
+		]
+	},
+	{
+		"esporte": "Tênis de Mesa",
+		"descricao": ["tênis", "mesa", "ping-pong", "esporte", "raquete"]
+	},
+	{
+		"esporte": "Tiro com Arco",
+		"descricao": [
+			"tiro",
+			"arco",
+			"esporte",
+			"flecha",
+			"alvo",
+			"caça",
+			"guerra",
+			"torneio",
+			"regra"
+		]
+	},
+	{
+		"esporte": "Tiro Esportivo",
+		"descricao": [
+			"esporte",
+			"tiro",
+			"atividade",
+			"proficiência",
+			"exatidão",
+			"precisão",
+			"velocidade",
+			"alcance",
+			"alvo",
+			"arma",
+			"competição",
+			"equipamento",
+			"distância",
+			"equipe",
+			"pontuação",
+			"disparo"
+		]
+	},
+	{
+		"esporte": "Triatlo",
+		"descricao": [
+			"triatlo",
+			"evento",
+			"modalidade",
+			"natação",
+			"ciclismo",
+			"corrida"
+		]
+	},
+	{
+		"esporte": "Vela",
+		"descricao": ["vela", "esporte", "barco", "água", "vento"]
+	},
+	{
+		"esporte": "Vôlei",
+		"descricao": [
+			"voleibol",
+			"vôlei",
+			"esporte",
+			"quadra",
+			"rede",
+			"equipe",
+			"jogador",
+			"saque",
+			"bola"
+		]
+	},
+	{
+		"esporte": "Vôlei de Praia",
+		"descricao": [
+			"voleibol",
+			"vôlei",
+			"praia",
+			"esporte",
+			"areia",
+			"quadra",
+			"rede",
+			"equipe",
+			"jogador",
+			"bola",
+			"saque",
+			"sacador",
+			"ponto"
+		]
+	},
+	{
+		"esporte": "Wushu",
+		"descricao": [
+			"wushu",
+			"kungfu",
+			"arte",
+			"estilo",
+			"escola",
+			"movimento",
+			"combate",
+			"atleta",
+			"prática"
+		]
+	}
+]
