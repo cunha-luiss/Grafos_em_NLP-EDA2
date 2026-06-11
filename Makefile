@@ -13,6 +13,10 @@ PARSER_TEST_SOURCES := tests/test_parser_json.c src/parser_json.c
 SPORTS_TEST_TARGET := build/test_dados_esportes.exe
 SPORTS_TEST_SOURCES := tests/test_dados_esportes.c src/dados_esportes.c \
 	src/parser_json.c src/leitor_arquivo.c
+IDS_TEST_TARGET := build/test_dados_identificados.exe
+IDS_TEST_SOURCES := tests/test_dados_identificados.c \
+	src/dados_identificados.c src/dados_esportes.c src/catalogo.c \
+	src/tabela_hash.c src/parser_json.c src/leitor_arquivo.c
 
 .PHONY: all run test clean
 
@@ -42,14 +46,19 @@ $(PARSER_TEST_TARGET): $(PARSER_TEST_SOURCES) | build
 $(SPORTS_TEST_TARGET): $(SPORTS_TEST_SOURCES) | build
 	$(CC) $(CFLAGS) $(SPORTS_TEST_SOURCES) -o $(SPORTS_TEST_TARGET)
 
+$(IDS_TEST_TARGET): $(IDS_TEST_SOURCES) | build
+	$(CC) $(CFLAGS) $(IDS_TEST_SOURCES) -o $(IDS_TEST_TARGET)
+
 test: $(HASH_TEST_TARGET) $(CATALOG_TEST_TARGET) $(FILE_TEST_TARGET) \
-		$(PARSER_TEST_TARGET) $(SPORTS_TEST_TARGET)
+		$(PARSER_TEST_TARGET) $(SPORTS_TEST_TARGET) $(IDS_TEST_TARGET)
 	./$(HASH_TEST_TARGET)
 	./$(CATALOG_TEST_TARGET)
 	./$(FILE_TEST_TARGET)
 	./$(PARSER_TEST_TARGET)
 	./$(SPORTS_TEST_TARGET)
+	./$(IDS_TEST_TARGET)
 
 clean:
 	rm -f $(TARGET) $(HASH_TEST_TARGET) $(CATALOG_TEST_TARGET) \
-		$(FILE_TEST_TARGET) $(PARSER_TEST_TARGET) $(SPORTS_TEST_TARGET)
+		$(FILE_TEST_TARGET) $(PARSER_TEST_TARGET) $(SPORTS_TEST_TARGET) \
+		$(IDS_TEST_TARGET)
