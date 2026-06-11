@@ -8,6 +8,8 @@ CATALOG_TEST_TARGET := build/test_catalogo.exe
 CATALOG_TEST_SOURCES := tests/test_catalogo.c src/catalogo.c src/tabela_hash.c
 FILE_TEST_TARGET := build/test_leitor_arquivo.exe
 FILE_TEST_SOURCES := tests/test_leitor_arquivo.c src/leitor_arquivo.c
+PARSER_TEST_TARGET := build/test_parser_json.exe
+PARSER_TEST_SOURCES := tests/test_parser_json.c src/parser_json.c
 
 .PHONY: all run test clean
 
@@ -31,11 +33,16 @@ $(CATALOG_TEST_TARGET): $(CATALOG_TEST_SOURCES) | build
 $(FILE_TEST_TARGET): $(FILE_TEST_SOURCES) | build
 	$(CC) $(CFLAGS) $(FILE_TEST_SOURCES) -o $(FILE_TEST_TARGET)
 
-test: $(HASH_TEST_TARGET) $(CATALOG_TEST_TARGET) $(FILE_TEST_TARGET)
+$(PARSER_TEST_TARGET): $(PARSER_TEST_SOURCES) | build
+	$(CC) $(CFLAGS) $(PARSER_TEST_SOURCES) -o $(PARSER_TEST_TARGET)
+
+test: $(HASH_TEST_TARGET) $(CATALOG_TEST_TARGET) $(FILE_TEST_TARGET) \
+		$(PARSER_TEST_TARGET)
 	./$(HASH_TEST_TARGET)
 	./$(CATALOG_TEST_TARGET)
 	./$(FILE_TEST_TARGET)
+	./$(PARSER_TEST_TARGET)
 
 clean:
 	rm -f $(TARGET) $(HASH_TEST_TARGET) $(CATALOG_TEST_TARGET) \
-		$(FILE_TEST_TARGET)
+		$(FILE_TEST_TARGET) $(PARSER_TEST_TARGET)
