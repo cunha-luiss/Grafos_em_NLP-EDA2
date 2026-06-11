@@ -18,6 +18,7 @@ int parser_json_iniciar(
 void parser_json_ignorar_espacos(ParserJson *parser);
 int parser_json_espiar(const ParserJson *parser, char *caractere);
 int parser_json_consumir_simbolo(ParserJson *parser, char simbolo);
+char *parser_json_ler_string(ParserJson *parser);
 int parser_json_finalizado(const ParserJson *parser);
 size_t parser_json_posicao(const ParserJson *parser);
 
