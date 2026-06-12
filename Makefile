@@ -1,5 +1,5 @@
 CC := gcc
-CFLAGS := -std=c17 -Wall -Wextra -Wpedantic -Iinclude
+CFLAGS := -std=c11 -Wall -Wextra -Wpedantic -Iinclude
 TARGET := build/grafos_nlp.exe
 SOURCES := $(wildcard src/*.c)
 HASH_TEST_TARGET := build/test_tabela_hash.exe
@@ -20,7 +20,8 @@ IDS_TEST_SOURCES := tests/test_dados_identificados.c \
 APP_TEST_TARGET := build/test_aplicacao.exe
 APP_TEST_SOURCES := tests/test_aplicacao.c src/aplicacao.c \
 	src/dados_identificados.c src/dados_esportes.c src/catalogo.c \
-	src/tabela_hash.c src/parser_json.c src/leitor_arquivo.c
+	src/tabela_hash.c src/parser_json.c src/leitor_arquivo.c \
+	src/grafo.c
 
 .PHONY: all run test clean
 
