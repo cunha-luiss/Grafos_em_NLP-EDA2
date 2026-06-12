@@ -6,6 +6,13 @@ __pycache__/
 # C extensions
 *.so
 
+# C build artifacts
+build/*
+!build/.gitkeep
+*.exe
+*.o
+*.obj
+
 # Distribution / packaging
 .Python
 build/
