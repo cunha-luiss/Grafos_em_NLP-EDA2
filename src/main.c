@@ -1,7 +1,19 @@
+#include "aplicacao.h"
+
 #include <stdio.h>
 
-int main(void)
+int main(int argc, char *argv[])
 {
-    puts("Grafos em NLP - EDA2");
-    return 0;
+    const char *caminho_json = "data/webscraper_padronizado.json";
+
+    if (argc > 2) {
+        fprintf(stderr, "Uso: %s [caminho_do_json]\n", argv[0]);
+        return 1;
+    }
+
+    if (argc == 2) {
+        caminho_json = argv[1];
+    }
+
+    return aplicacao_executar(caminho_json, stdout, stderr);
 }
