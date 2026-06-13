@@ -5,6 +5,7 @@
 #include "dados_identificados.h"
 #include "leitor_arquivo.h"
 #include "grafo.h"
+#include "heap.h"
 
 #include <stdlib.h>
 
@@ -131,7 +132,64 @@ int aplicacao_executar(
     }
     
     fprintf(saida, "Grafo construido com sucesso!\n");
-    
+
+    {
+        HeapAresta *heap = heap_construir_de_grafo(grafo);
+        const size_t quantidade_exibida = 5;
+        size_t i;
+
+        if (heap == NULL) {
+            fputs(
+                "Erro: nao foi possivel construir a heap de arestas.\n",
+                saida_erros
+            );
+            grafo_destruir(grafo);
+            dados_identificados_destruir(&dados_identificados);
+            dados_esportes_destruir(&dados_esportes);
+            free(json);
+            return 1;
+        }
+
+        fputs("Associacoes mais frequentes na Wikipedia:\n", saida);
+
+        for (i = 0; i < quantidade_exibida; i++) {
+            ItemHeap item;
+            int id_esporte;
+            int id_caracteristica;
+            TipoVertice tipo_origem;
+
+            if (!heap_remover_maximo(heap, &item)) {
+                break;
+            }
+
+            if (!catalogo_obter_tipo(
+                    dados_identificados.catalogo,
+                    item.origem,
+                    &tipo_origem
+                )) {
+                continue;
+            }
+
+            if (tipo_origem == TIPO_ESPORTE) {
+                id_esporte = item.origem;
+                id_caracteristica = item.destino;
+            } else {
+                id_esporte = item.destino;
+                id_caracteristica = item.origem;
+            }
+
+            fprintf(
+                saida,
+                "  %s - %s: %d\n",
+                catalogo_obter_texto(dados_identificados.catalogo, id_esporte),
+                catalogo_obter_texto(dados_identificados.catalogo, id_caracteristica),
+                item.peso
+            );
+        }
+
+        heap_destruir(heap);
+    }
+
     grafo_destruir(grafo);
     dados_identificados_destruir(&dados_identificados);
     dados_esportes_destruir(&dados_esportes);

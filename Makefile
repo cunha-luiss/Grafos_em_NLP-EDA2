@@ -21,7 +21,9 @@ APP_TEST_TARGET := build/test_aplicacao.exe
 APP_TEST_SOURCES := tests/test_aplicacao.c src/aplicacao.c \
 	src/dados_identificados.c src/dados_esportes.c src/catalogo.c \
 	src/tabela_hash.c src/parser_json.c src/leitor_arquivo.c \
-	src/grafo.c
+	src/grafo.c src/heap.c
+HEAP_TEST_TARGET := build/test_heap.exe
+HEAP_TEST_SOURCES := tests/test_heap.c src/heap.c src/grafo.c
 
 .PHONY: all run test clean
 
@@ -57,9 +59,12 @@ $(IDS_TEST_TARGET): $(IDS_TEST_SOURCES) | build
 $(APP_TEST_TARGET): $(APP_TEST_SOURCES) | build
 	$(CC) $(CFLAGS) $(APP_TEST_SOURCES) -o $(APP_TEST_TARGET)
 
+$(HEAP_TEST_TARGET): $(HEAP_TEST_SOURCES) | build
+	$(CC) $(CFLAGS) $(HEAP_TEST_SOURCES) -o $(HEAP_TEST_TARGET)
+
 test: $(HASH_TEST_TARGET) $(CATALOG_TEST_TARGET) $(FILE_TEST_TARGET) \
 		$(PARSER_TEST_TARGET) $(SPORTS_TEST_TARGET) $(IDS_TEST_TARGET) \
-		$(APP_TEST_TARGET)
+		$(APP_TEST_TARGET) $(HEAP_TEST_TARGET)
 	./$(HASH_TEST_TARGET)
 	./$(CATALOG_TEST_TARGET)
 	./$(FILE_TEST_TARGET)
@@ -67,8 +72,9 @@ test: $(HASH_TEST_TARGET) $(CATALOG_TEST_TARGET) $(FILE_TEST_TARGET) \
 	./$(SPORTS_TEST_TARGET)
 	./$(IDS_TEST_TARGET)
 	./$(APP_TEST_TARGET)
+	./$(HEAP_TEST_TARGET)
 
 clean:
 	rm -f $(TARGET) $(HASH_TEST_TARGET) $(CATALOG_TEST_TARGET) \
 		$(FILE_TEST_TARGET) $(PARSER_TEST_TARGET) $(SPORTS_TEST_TARGET) \
-		$(IDS_TEST_TARGET) $(APP_TEST_TARGET)
+		$(IDS_TEST_TARGET) $(APP_TEST_TARGET) $(HEAP_TEST_TARGET)
