@@ -65,6 +65,7 @@ Caracteristicas unicas: 332
 Vertices totais: 407
 Associacoes esporte-caracteristica: 797
 Grafo construido com sucesso!
+Arvore Geradora Maxima construida com sucesso!
 ```
 
 ## Testes

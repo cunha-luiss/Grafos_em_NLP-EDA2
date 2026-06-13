@@ -23,18 +23,19 @@ static void testar_pipeline_completo(void)
     assert(saida != NULL);
     assert(erros != NULL);
     assert(aplicacao_executar(
-        "data/webscraper_padronizado.json",
-        saida,
-        erros
-    ) == 0);
+               "data/webscraper_padronizado.json",
+               saida,
+               erros) == 0);
 
     assert(arquivo_contem(saida, "Esportes: 75"));
     assert(arquivo_contem(saida, "Caracteristicas unicas: 332"));
     assert(arquivo_contem(saida, "Vertices totais: 407"));
     assert(arquivo_contem(
         saida,
-        "Associacoes esporte-caracteristica: 797"
-    ));
+        "Associacoes esporte-caracteristica: 797"));
+    assert(arquivo_contem(
+        saida,
+        "Arvore Geradora Maxima construida com sucesso!"));
 
     assert(fclose(saida) == 0);
     assert(fclose(erros) == 0);
@@ -48,14 +49,12 @@ static void testar_arquivo_inexistente(void)
     assert(saida != NULL);
     assert(erros != NULL);
     assert(aplicacao_executar(
-        "data/arquivo_inexistente.json",
-        saida,
-        erros
-    ) == 1);
+               "data/arquivo_inexistente.json",
+               saida,
+               erros) == 1);
     assert(arquivo_contem(
         erros,
-        "nao foi possivel ler o arquivo"
-    ));
+        "nao foi possivel ler o arquivo"));
 
     assert(fclose(saida) == 0);
     assert(fclose(erros) == 0);
