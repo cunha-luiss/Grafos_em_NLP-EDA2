@@ -4,6 +4,7 @@
 #include "dados_esportes.h"
 #include "dados_identificados.h"
 #include "leitor_arquivo.h"
+#include "grafo.h"
 
 #include <stdlib.h>
 
@@ -120,6 +121,18 @@ int aplicacao_executar(
         quantidade_associacoes
     );
 
+    Grafo *grafo = grafo_construir_de_dados(&dados_identificados, quantidade_vertices);
+    if (grafo == NULL) {
+        fputs("Erro: nao foi possivel construir o grafo.\n", saida_erros);
+        dados_identificados_destruir(&dados_identificados);
+        dados_esportes_destruir(&dados_esportes);
+        free(json);
+        return 1;
+    }
+    
+    fprintf(saida, "Grafo construido com sucesso!\n");
+    
+    grafo_destruir(grafo);
     dados_identificados_destruir(&dados_identificados);
     dados_esportes_destruir(&dados_esportes);
     free(json);

@@ -6,7 +6,7 @@ inteiros para a construcao posterior do grafo.
 
 ## Requisitos
 
-- C17
+- C17 ou C11 (alterar para o seu em "CFLAGS" no Make)
 - GCC
 - Make, opcional
 
@@ -52,6 +52,11 @@ Ou informando outro arquivo:
 .\build\grafos_nlp.exe caminho\para\dados.json
 ```
 
+```powershell
+# Exemplo
+.\build\grafos_nlp.exe "webscraper bruto.json"
+```
+
 Saida esperada para o arquivo atual:
 
 ```text
@@ -59,6 +64,7 @@ Esportes: 75
 Caracteristicas unicas: 332
 Vertices totais: 407
 Associacoes esporte-caracteristica: 797
+Grafo construido com sucesso!
 ```
 
 ## Testes
