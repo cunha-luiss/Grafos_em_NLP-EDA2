@@ -1,6 +1,7 @@
 #include "aplicacao.h"
 
 #include "catalogo.h"
+#include "comunidade.h"
 #include "dados_esportes.h"
 #include "dados_identificados.h"
 #include "leitor_arquivo.h"
@@ -9,6 +10,13 @@
 #include "kruskal.h"
 
 #include <stdlib.h>
+
+/* Peso minimo para manter aresta na floresta de comunidades.
+ * Sport<->Char: peso = frequencia da palavra na descricao do esporte (1-6).
+ * Char<->Char: peso = numero de esportes que compartilham ambas (1-26).
+ * Limiar 3 mantem conexoes onde a palavra aparece 3+ vezes OU
+ * o par de caracteristicas e compartilhado por 3+ esportes. */
+#define LIMIAR_PESO_COMUNIDADE 3
 
 int aplicacao_executar(
     const char *caminho_json,
@@ -25,10 +33,7 @@ int aplicacao_executar(
     DadosEsportes dados_esportes = {NULL, 0};
     DadosIdentificados dados_identificados = {NULL, NULL, 0};
 
-    if (
-        caminho_json == NULL ||
-        saida == NULL ||
-        saida_erros == NULL)
+    if (caminho_json == NULL || saida == NULL || saida_erros == NULL)
     {
         return 1;
     }
@@ -36,33 +41,24 @@ int aplicacao_executar(
     json = ler_arquivo_texto(caminho_json, &tamanho_json);
     if (json == NULL)
     {
-        fprintf(
-            saida_erros,
-            "Erro: nao foi possivel ler o arquivo '%s'.\n",
-            caminho_json);
+        fprintf(saida_erros,
+                "Erro: nao foi possivel ler o arquivo '%s'.\n",
+                caminho_json);
         return 1;
     }
 
-    if (!dados_esportes_ler_json(
-            json,
-            tamanho_json,
-            &dados_esportes))
+    if (!dados_esportes_ler_json(json, tamanho_json, &dados_esportes))
     {
-        fprintf(
-            saida_erros,
-            "Erro: o arquivo '%s' nao possui o formato esperado.\n",
-            caminho_json);
+        fprintf(saida_erros,
+                "Erro: o arquivo '%s' nao possui o formato esperado.\n",
+                caminho_json);
         free(json);
         return 1;
     }
 
-    if (!dados_identificados_criar(
-            &dados_esportes,
-            &dados_identificados))
+    if (!dados_identificados_criar(&dados_esportes, &dados_identificados))
     {
-        fputs(
-            "Erro: nao foi possivel gerar os IDs dos vertices.\n",
-            saida_erros);
+        fputs("Erro: nao foi possivel gerar os IDs dos vertices.\n", saida_erros);
         dados_esportes_destruir(&dados_esportes);
         free(json);
         return 1;
@@ -74,21 +70,15 @@ int aplicacao_executar(
             dados_identificados.esportes[i].quantidade_caracteristicas;
     }
 
-    quantidade_vertices = catalogo_tamanho(
-        dados_identificados.catalogo);
+    quantidade_vertices = catalogo_tamanho(dados_identificados.catalogo);
 
     for (i = 0; i < quantidade_vertices; i++)
     {
         TipoVertice tipo;
 
-        if (!catalogo_obter_tipo(
-                dados_identificados.catalogo,
-                (int)i,
-                &tipo))
+        if (!catalogo_obter_tipo(dados_identificados.catalogo, (int)i, &tipo))
         {
-            fputs(
-                "Erro: catalogo de IDs inconsistente.\n",
-                saida_erros);
+            fputs("Erro: catalogo de IDs inconsistente.\n", saida_erros);
             dados_identificados_destruir(&dados_identificados);
             dados_esportes_destruir(&dados_esportes);
             free(json);
@@ -96,29 +86,16 @@ int aplicacao_executar(
         }
 
         if (tipo == TIPO_ESPORTE)
-        {
             quantidade_esportes_unicos++;
-        }
         else
-        {
             quantidade_caracteristicas++;
-        }
     }
 
     fprintf(saida, "Arquivo: %s\n", caminho_json);
-    fprintf(
-        saida,
-        "Esportes: %zu\n",
-        quantidade_esportes_unicos);
-    fprintf(
-        saida,
-        "Caracteristicas unicas: %zu\n",
-        quantidade_caracteristicas);
+    fprintf(saida, "Esportes: %zu\n", quantidade_esportes_unicos);
+    fprintf(saida, "Caracteristicas unicas: %zu\n", quantidade_caracteristicas);
     fprintf(saida, "Vertices totais: %zu\n", quantidade_vertices);
-    fprintf(
-        saida,
-        "Associacoes esporte-caracteristica: %zu\n",
-        quantidade_associacoes);
+    fprintf(saida, "Associacoes esporte-caracteristica: %zu\n", quantidade_associacoes);
 
     Grafo *grafo = grafo_construir_de_dados(&dados_identificados, quantidade_vertices);
     if (grafo == NULL)
@@ -132,16 +109,16 @@ int aplicacao_executar(
 
     fprintf(saida, "Grafo construido com sucesso!\n");
 
+    grafo_adicionar_arestas_char_char(grafo, &dados_identificados);
+
     {
         HeapAresta *heap = heap_construir_de_grafo(grafo);
         const size_t quantidade_exibida = 5;
-        size_t i;
+        size_t k;
 
         if (heap == NULL)
         {
-            fputs(
-                "Erro: nao foi possivel construir a heap de arestas.\n",
-                saida_erros);
+            fputs("Erro: nao foi possivel construir a heap de arestas.\n", saida_erros);
             grafo_destruir(grafo);
             dados_identificados_destruir(&dados_identificados);
             dados_esportes_destruir(&dados_esportes);
@@ -151,7 +128,7 @@ int aplicacao_executar(
 
         fputs("Associacoes mais frequentes na Wikipedia:\n", saida);
 
-        for (i = 0; i < quantidade_exibida; i++)
+        for (k = 0; k < quantidade_exibida; k++)
         {
             ItemHeap item;
             int id_esporte;
@@ -159,17 +136,11 @@ int aplicacao_executar(
             TipoVertice tipo_origem;
 
             if (!heap_remover_maximo(heap, &item))
-            {
                 break;
-            }
 
-            if (!catalogo_obter_tipo(
-                    dados_identificados.catalogo,
-                    item.origem,
-                    &tipo_origem))
-            {
+            if (!catalogo_obter_tipo(dados_identificados.catalogo,
+                                     item.origem, &tipo_origem))
                 continue;
-            }
 
             if (tipo_origem == TIPO_ESPORTE)
             {
@@ -182,12 +153,10 @@ int aplicacao_executar(
                 id_caracteristica = item.origem;
             }
 
-            fprintf(
-                saida,
-                "  %s - %s: %d\n",
-                catalogo_obter_texto(dados_identificados.catalogo, id_esporte),
-                catalogo_obter_texto(dados_identificados.catalogo, id_caracteristica),
-                item.peso);
+            fprintf(saida, "  %s - %s: %d\n",
+                    catalogo_obter_texto(dados_identificados.catalogo, id_esporte),
+                    catalogo_obter_texto(dados_identificados.catalogo, id_caracteristica),
+                    item.peso);
         }
 
         heap_destruir(heap);
@@ -198,9 +167,8 @@ int aplicacao_executar(
 
         if (arvore_geradora_maxima == NULL)
         {
-            fputs(
-                "Erro: nao foi possivel construir a arvore geradora maxima.\n",
-                saida_erros);
+            fputs("Erro: nao foi possivel construir a arvore geradora maxima.\n",
+                  saida_erros);
             grafo_destruir(grafo);
             dados_identificados_destruir(&dados_identificados);
             dados_esportes_destruir(&dados_esportes);
@@ -210,6 +178,40 @@ int aplicacao_executar(
 
         fputs("Arvore Geradora Maxima construida com sucesso!\n", saida);
         grafo_destruir(arvore_geradora_maxima);
+    }
+
+    {
+        Grafo *floresta = kruskal_construir_floresta(grafo, LIMIAR_PESO_COMUNIDADE);
+
+        if (floresta == NULL)
+        {
+            fputs("Erro: nao foi possivel construir a floresta de comunidades.\n",
+                  saida_erros);
+            grafo_destruir(grafo);
+            dados_identificados_destruir(&dados_identificados);
+            dados_esportes_destruir(&dados_esportes);
+            free(json);
+            return 1;
+        }
+
+        ListaComunidades *comunidades = comunidade_detectar(floresta);
+
+        if (comunidades == NULL)
+        {
+            fputs("Erro: nao foi possivel detectar comunidades.\n", saida_erros);
+            grafo_destruir(floresta);
+            grafo_destruir(grafo);
+            dados_identificados_destruir(&dados_identificados);
+            dados_esportes_destruir(&dados_esportes);
+            free(json);
+            return 1;
+        }
+
+        comunidade_imprimir(comunidades, dados_identificados.catalogo);
+        fputs("Deteccao de comunidades concluida!\n", saida);
+
+        comunidade_destruir(comunidades);
+        grafo_destruir(floresta);
     }
 
     grafo_destruir(grafo);
