@@ -103,6 +103,35 @@ int grafo_adicionar_aresta_com_peso(
     return 1;
 }
 
+void grafo_adicionar_arestas_char_char(
+    Grafo *grafo,
+    const DadosIdentificados *dados)
+{
+    size_t i, j, k;
+
+    if (grafo == NULL || dados == NULL)
+    {
+        return;
+    }
+
+    for (i = 0; i < dados->quantidade_esportes; i++)
+    {
+        const EsporteIdentificado *esporte = &dados->esportes[i];
+
+        for (j = 0; j < esporte->quantidade_caracteristicas; j++)
+        {
+            for (k = j + 1; k < esporte->quantidade_caracteristicas; k++)
+            {
+                int ci = esporte->ids_caracteristicas[j];
+                int ck = esporte->ids_caracteristicas[k];
+
+                /* peso acumula automaticamente se aresta ja existir */
+                grafo_adicionar_aresta_com_peso(grafo, ci, ck, 1);
+            }
+        }
+    }
+}
+
 Grafo *grafo_construir_de_dados(const DadosIdentificados *dados, size_t quantidade_vertices)
 {
     Grafo *g;
