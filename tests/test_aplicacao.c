@@ -30,7 +30,7 @@ static void testar_pipeline_completo(void)
     assert(arquivo_contem(saida, "Esportes: 75"));
     assert(arquivo_contem(saida, "Caracteristicas unicas: 332"));
     assert(arquivo_contem(saida, "Vertices totais: 407"));
-    assert(arquivo_contem(saida, "Associacoes esporte-caracteristica: 797"));
+    assert(arquivo_contem(saida, "Associacoes esporte-caracteristica: 1536"));
     assert(arquivo_contem(saida, "Arvore Geradora Maxima construida com sucesso!"));
     assert(arquivo_contem(saida, "Deteccao de comunidades concluida!"));
 

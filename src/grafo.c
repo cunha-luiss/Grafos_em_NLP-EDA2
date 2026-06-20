@@ -117,18 +117,50 @@ void grafo_adicionar_arestas_char_char(
     for (i = 0; i < dados->quantidade_esportes; i++)
     {
         const EsporteIdentificado *esporte = &dados->esportes[i];
+        if (esporte->quantidade_caracteristicas == 0)
+        {
+            continue;
+        }
+
+        /* Allocating temporary array to find unique IDs for the current sport */
+        int *unicos = malloc(esporte->quantidade_caracteristicas * sizeof(int));
+        if (unicos == NULL)
+        {
+            continue;
+        }
+        size_t qtd_unicos = 0;
 
         for (j = 0; j < esporte->quantidade_caracteristicas; j++)
         {
-            for (k = j + 1; k < esporte->quantidade_caracteristicas; k++)
+            int id = esporte->ids_caracteristicas[j];
+            int ja_existe = 0;
+            for (k = 0; k < qtd_unicos; k++)
             {
-                int ci = esporte->ids_caracteristicas[j];
-                int ck = esporte->ids_caracteristicas[k];
+                if (unicos[k] == id)
+                {
+                    ja_existe = 1;
+                    break;
+                }
+            }
+            if (!ja_existe)
+            {
+                unicos[qtd_unicos++] = id;
+            }
+        }
+
+        for (j = 0; j < qtd_unicos; j++)
+        {
+            for (k = j + 1; k < qtd_unicos; k++)
+            {
+                int ci = unicos[j];
+                int ck = unicos[k];
 
                 /* peso acumula automaticamente se aresta ja existir */
                 grafo_adicionar_aresta_com_peso(grafo, ci, ck, 1);
             }
         }
+
+        free(unicos);
     }
 }
 

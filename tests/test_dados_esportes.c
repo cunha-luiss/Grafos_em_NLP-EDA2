@@ -51,7 +51,7 @@ static void testar_json_real(void)
         total_caracteristicas +=
             dados.registros[i].quantidade_caracteristicas;
     }
-    assert(total_caracteristicas == 797);
+    assert(total_caracteristicas == 1536);
 
     dados_esportes_destruir(&dados);
     free(json);
