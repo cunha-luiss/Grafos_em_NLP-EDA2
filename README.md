@@ -1,8 +1,6 @@
 # Grafos em NLP - EDA2
 
-Projeto da disciplina Estruturas de Dados 2 da FCTE/UnB. O programa le um
-arquivo JSON com esportes e caracteristicas e converte as strings em IDs
-inteiros para a construcao posterior do grafo.
+Criação de um algoritmo de Processamento de Linguaggem Natural usando os algoritmos tradicionais (Kruskal, grafos ponderados, hash e heap) em grafos para a matéria EDA2 (2026.1) da FCTE/UnB
 
 ## Requisitos
 
@@ -33,28 +31,15 @@ make
 No PowerShell:
 
 ```powershell
-$env:Path = "C:\msys64\ucrt64\bin;$env:Path"
-gcc -std=c17 -Wall -Wextra -Wpedantic -Iinclude src/*.c `
-  -o build/grafos_nlp.exe
+gcc -std=c11 -Wall -Wextra -Wpedantic -Iinclude src/*.c -o build/grafos_nlp.exe
 ```
 
 ## Execucao
 
-Usando o arquivo padrao:
-
-```bash
-make run
-```
-
-Ou informando outro arquivo:
+informando um arquivo:
 
 ```powershell
-.\build\grafos_nlp.exe caminho\para\dados.json
-```
-
-```powershell
-# Exemplo
-.\build\grafos_nlp.exe "webscraper bruto.json"
+./build/grafos_nlp.exe data/webscraper_padronizado.json
 ```
 
 Saida esperada para o arquivo atual:
@@ -66,6 +51,8 @@ Vertices totais: 407
 Associacoes esporte-caracteristica: 797
 Grafo construido com sucesso!
 Arvore Geradora Maxima construida com sucesso!
+
+Comunidades:......
 ```
 
 ## Testes
@@ -97,24 +84,3 @@ O modulo `dados_identificados` entrega:
 Esportes e caracteristicas usam IDs globais, mas tipos distintos. Assim,
 o esporte `Atletismo` e a caracteristica `atletismo` sao vertices diferentes.
 
-## Commits
-
-Formato:
-
-```text
-<type>[optional scope]!: <short summary>
-```
-
-Exemplo:
-
-```text
-feat(parser): adiciona leitura de strings JSON
-```
-
-## Contribuicao
-
-1. Crie uma branch a partir da `dev`.
-2. Implemente e execute todos os testes.
-3. Faca commits pequenos e objetivos.
-4. Envie a branch para o repositorio remoto.
-5. Abra um Pull Request para a branch `dev`.
