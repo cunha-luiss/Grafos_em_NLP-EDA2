@@ -1,6 +1,7 @@
 #ifndef GRAFO_H
 #define GRAFO_H
 
+#include "catalogo.h"
 #include "dados_identificados.h"
 #include <stddef.h>
 
@@ -36,5 +37,13 @@ int grafo_adicionar_aresta_com_peso(
 Grafo *grafo_construir_de_dados(
     const DadosIdentificados *dados,
     size_t quantidade_vertices);
+
+/* Adiciona arestas Caracteristica <-> Caracteristica ao grafo.
+ * Para cada par de caracteristicas (ci, cj) que co-ocorrem em um mesmo
+ * esporte, incrementa o peso da aresta ci<->cj em 1.
+ * Ao final, peso(ci, cj) = numero de esportes que possuem ambas. */
+void grafo_adicionar_arestas_char_char(
+    Grafo *grafo,
+    const DadosIdentificados *dados);
 
 #endif
