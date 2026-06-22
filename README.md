@@ -13,11 +13,12 @@ As estruturas de dados e o parser JSON foram implementados pelo grupo.
 ## Estrutura
 
 ```text
-data/       Arquivos de entrada
-include/    Cabecalhos publicos
-src/        Codigo-fonte
-tests/      Testes automatizados
-build/      Binarios gerados
+data/                           Arquivos de entrada
+include/                        Cabecalhos publicos
+src/                            Codigo-fonte
+tests/                          Testes automatizados
+build/                          Binarios gerados
+SAIDA OBTIDA PELO GRUPO.txt     Arquivo com a saída analisada pelo grupo
 ```
 
 ## Compilacao
