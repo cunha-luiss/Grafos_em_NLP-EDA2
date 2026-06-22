@@ -1,6 +1,76 @@
 #include "grafo.h"
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+static int vetor_contem_int(const int *valores, size_t quantidade, int valor)
+{
+    size_t i;
+
+    for (i = 0; i < quantidade; i++)
+    {
+        if (valores[i] == valor)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+static void destruir_vetores_int(int **vetores, size_t quantidade)
+{
+    size_t i;
+
+    if (vetores == NULL)
+    {
+        return;
+    }
+
+    for (i = 0; i < quantidade; i++)
+    {
+        free(vetores[i]);
+    }
+
+    free(vetores);
+}
+
+static int vertice_tem_aresta(const Grafo *grafo, int vertice)
+{
+    if (
+        grafo == NULL ||
+        vertice < 0 ||
+        (size_t)vertice >= grafo->quantidade_vertices)
+    {
+        return 0;
+    }
+
+    return grafo->lista_adj[vertice] != NULL;
+}
+
+static int contar_caracteristicas_em_comum(
+    const int *caracteristicas_a,
+    size_t quantidade_a,
+    const int *caracteristicas_b,
+    size_t quantidade_b)
+{
+    size_t i, j;
+    int quantidade = 0;
+
+    for (i = 0; i < quantidade_a; i++)
+    {
+        for (j = 0; j < quantidade_b; j++)
+        {
+            if (caracteristicas_a[i] == caracteristicas_b[j])
+            {
+                quantidade++;
+                break;
+            }
+        }
+    }
+
+    return quantidade;
+}
 
 Grafo *grafo_criar(size_t quantidade_vertices)
 {
@@ -18,6 +88,190 @@ Grafo *grafo_criar(size_t quantidade_vertices)
     }
 
     return g;
+}
+
+Grafo *grafo_construir_por_caracteristicas_em_comum(
+    const DadosIdentificados *dados,
+    size_t quantidade_vertices,
+    int minimo_caracteristicas_em_comum)
+{
+    Grafo *grafo;
+    int **caracteristicas_unicas;
+    size_t *quantidades_unicas;
+    size_t i, j;
+
+    if (
+        dados == NULL ||
+        quantidade_vertices == 0 ||
+        minimo_caracteristicas_em_comum <= 0)
+    {
+        return NULL;
+    }
+
+    caracteristicas_unicas = calloc(
+        dados->quantidade_esportes,
+        sizeof(*caracteristicas_unicas));
+    quantidades_unicas = calloc(
+        dados->quantidade_esportes,
+        sizeof(*quantidades_unicas));
+
+    if (caracteristicas_unicas == NULL || quantidades_unicas == NULL)
+    {
+        destruir_vetores_int(caracteristicas_unicas, dados->quantidade_esportes);
+        free(quantidades_unicas);
+        return NULL;
+    }
+
+    for (i = 0; i < dados->quantidade_esportes; i++)
+    {
+        const EsporteIdentificado *esporte = &dados->esportes[i];
+
+        if (esporte->quantidade_caracteristicas == 0)
+        {
+            continue;
+        }
+
+        if (
+            esporte->quantidade_caracteristicas >
+            SIZE_MAX / sizeof(*caracteristicas_unicas[i]))
+        {
+            destruir_vetores_int(caracteristicas_unicas, dados->quantidade_esportes);
+            free(quantidades_unicas);
+            return NULL;
+        }
+
+        caracteristicas_unicas[i] = malloc(
+            esporte->quantidade_caracteristicas *
+            sizeof(*caracteristicas_unicas[i]));
+        if (caracteristicas_unicas[i] == NULL)
+        {
+            destruir_vetores_int(caracteristicas_unicas, dados->quantidade_esportes);
+            free(quantidades_unicas);
+            return NULL;
+        }
+
+        for (j = 0; j < esporte->quantidade_caracteristicas; j++)
+        {
+            int id = esporte->ids_caracteristicas[j];
+
+            if (id < 0 || (size_t)id >= quantidade_vertices)
+            {
+                destruir_vetores_int(caracteristicas_unicas, dados->quantidade_esportes);
+                free(quantidades_unicas);
+                return NULL;
+            }
+
+            if (!vetor_contem_int(
+                    caracteristicas_unicas[i],
+                    quantidades_unicas[i],
+                    id))
+            {
+                caracteristicas_unicas[i][quantidades_unicas[i]++] = id;
+            }
+        }
+    }
+
+    grafo = grafo_criar(quantidade_vertices);
+    if (grafo == NULL)
+    {
+        destruir_vetores_int(caracteristicas_unicas, dados->quantidade_esportes);
+        free(quantidades_unicas);
+        return NULL;
+    }
+
+    for (i = 0; i < dados->quantidade_esportes; i++)
+    {
+        const EsporteIdentificado *esporte_i = &dados->esportes[i];
+
+        for (j = i + 1; j < dados->quantidade_esportes; j++)
+        {
+            const EsporteIdentificado *esporte_j = &dados->esportes[j];
+            int caracteristicas_em_comum =
+                contar_caracteristicas_em_comum(
+                    caracteristicas_unicas[i],
+                    quantidades_unicas[i],
+                    caracteristicas_unicas[j],
+                    quantidades_unicas[j]);
+
+            if (caracteristicas_em_comum >= minimo_caracteristicas_em_comum)
+            {
+                if (!grafo_adicionar_aresta_com_peso(
+                        grafo,
+                        esporte_i->id_esporte,
+                        esporte_j->id_esporte,
+                        caracteristicas_em_comum))
+                {
+                    grafo_destruir(grafo);
+                    destruir_vetores_int(
+                        caracteristicas_unicas,
+                        dados->quantidade_esportes);
+                    free(quantidades_unicas);
+                    return NULL;
+                }
+            }
+        }
+    }
+
+    if (minimo_caracteristicas_em_comum > 1)
+    {
+        int minimo_para_resgate = minimo_caracteristicas_em_comum - 1;
+
+        for (i = 0; i < dados->quantidade_esportes; i++)
+        {
+            const EsporteIdentificado *esporte_i = &dados->esportes[i];
+            int melhor_esporte = -1;
+            int melhor_peso = 0;
+
+            if (vertice_tem_aresta(grafo, esporte_i->id_esporte))
+            {
+                continue;
+            }
+
+            for (j = 0; j < dados->quantidade_esportes; j++)
+            {
+                int caracteristicas_em_comum;
+
+                if (i == j)
+                {
+                    continue;
+                }
+
+                caracteristicas_em_comum =
+                    contar_caracteristicas_em_comum(
+                        caracteristicas_unicas[i],
+                        quantidades_unicas[i],
+                        caracteristicas_unicas[j],
+                        quantidades_unicas[j]);
+
+                if (caracteristicas_em_comum > melhor_peso)
+                {
+                    melhor_peso = caracteristicas_em_comum;
+                    melhor_esporte = dados->esportes[j].id_esporte;
+                }
+            }
+
+            if (melhor_peso >= minimo_para_resgate)
+            {
+                if (!grafo_adicionar_aresta_com_peso(
+                        grafo,
+                        esporte_i->id_esporte,
+                        melhor_esporte,
+                        melhor_peso))
+                {
+                    grafo_destruir(grafo);
+                    destruir_vetores_int(
+                        caracteristicas_unicas,
+                        dados->quantidade_esportes);
+                    free(quantidades_unicas);
+                    return NULL;
+                }
+            }
+        }
+    }
+
+    destruir_vetores_int(caracteristicas_unicas, dados->quantidade_esportes);
+    free(quantidades_unicas);
+    return grafo;
 }
 
 void grafo_destruir(Grafo *grafo)

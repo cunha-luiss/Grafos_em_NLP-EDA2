@@ -11,12 +11,13 @@
 
 #include <stdlib.h>
 
-/* Peso minimo para manter aresta na floresta de comunidades.
- * Sport<->Char: peso = frequencia da palavra na descricao do esporte (1-6).
- * Char<->Char: peso = numero de esportes que compartilham ambas (1-26).
- * Limiar 3 mantem conexoes onde a palavra aparece 3+ vezes OU
- * o par de caracteristicas e compartilhado por 3+ esportes. */
-#define LIMIAR_PESO_COMUNIDADE 3
+/* Dois esportes entram na mesma floresta quando compartilham pelo menos
+ * 3 caracteristicas unicas. O peso da aresta Esporte<->Esporte e essa
+ * quantidade de caracteristicas em comum.
+ * Esportes que ficariam isolados podem ser ligados ao melhor vizinho com
+ * 2 caracteristicas em comum para reduzir comunidades unitarias. */
+#define MINIMO_CARACTERISTICAS_EM_COMUM 3
+#define MINIMO_CARACTERISTICAS_RESGATE 2
 
 int aplicacao_executar(
     const char *caminho_json,
@@ -181,12 +182,39 @@ int aplicacao_executar(
     }
 
     {
-        Grafo *floresta = kruskal_construir_floresta(grafo, LIMIAR_PESO_COMUNIDADE);
+        Grafo *grafo_comunidades =
+            grafo_construir_por_caracteristicas_em_comum(
+                &dados_identificados,
+                quantidade_vertices,
+                MINIMO_CARACTERISTICAS_EM_COMUM);
+        Grafo *floresta;
+
+        if (grafo_comunidades == NULL)
+        {
+            fputs("Erro: nao foi possivel construir o grafo de comunidades.\n",
+                  saida_erros);
+            grafo_destruir(grafo);
+            dados_identificados_destruir(&dados_identificados);
+            dados_esportes_destruir(&dados_esportes);
+            free(json);
+            return 1;
+        }
+
+        fprintf(saida,
+                "Comparacao esporte-esporte: minimo de %d caracteristicas em comum "
+                "(resgate de isolados com %d).\n",
+                MINIMO_CARACTERISTICAS_EM_COMUM,
+                MINIMO_CARACTERISTICAS_RESGATE);
+
+        floresta = kruskal_construir_floresta(
+            grafo_comunidades,
+            MINIMO_CARACTERISTICAS_RESGATE);
 
         if (floresta == NULL)
         {
             fputs("Erro: nao foi possivel construir a floresta de comunidades.\n",
                   saida_erros);
+            grafo_destruir(grafo_comunidades);
             grafo_destruir(grafo);
             dados_identificados_destruir(&dados_identificados);
             dados_esportes_destruir(&dados_esportes);
@@ -200,6 +228,7 @@ int aplicacao_executar(
         {
             fputs("Erro: nao foi possivel detectar comunidades.\n", saida_erros);
             grafo_destruir(floresta);
+            grafo_destruir(grafo_comunidades);
             grafo_destruir(grafo);
             dados_identificados_destruir(&dados_identificados);
             dados_esportes_destruir(&dados_esportes);
@@ -207,11 +236,15 @@ int aplicacao_executar(
             return 1;
         }
 
-        comunidade_imprimir(comunidades, dados_identificados.catalogo);
+        comunidade_imprimir_com_caracteristicas(
+            comunidades,
+            dados_identificados.catalogo,
+            &dados_identificados);
         fputs("Deteccao de comunidades concluida!\n", saida);
 
         comunidade_destruir(comunidades);
         grafo_destruir(floresta);
+        grafo_destruir(grafo_comunidades);
     }
 
     grafo_destruir(grafo);

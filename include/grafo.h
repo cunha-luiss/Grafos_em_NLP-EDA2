@@ -46,4 +46,12 @@ void grafo_adicionar_arestas_char_char(
     Grafo *grafo,
     const DadosIdentificados *dados);
 
+/* Constroi um grafo Esporte <-> Esporte.
+ * O peso da aresta e a quantidade de caracteristicas unicas em comum.
+ * A aresta so e criada quando esse peso e maior ou igual ao minimo informado. */
+Grafo *grafo_construir_por_caracteristicas_em_comum(
+    const DadosIdentificados *dados,
+    size_t quantidade_vertices,
+    int minimo_caracteristicas_em_comum);
+
 #endif

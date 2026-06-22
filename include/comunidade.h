@@ -21,6 +21,11 @@ ListaComunidades *comunidade_detectar(const Grafo *floresta);
 void comunidade_imprimir(const ListaComunidades *lista,
                          const Catalogo *catalogo);
 
+void comunidade_imprimir_com_caracteristicas(
+    const ListaComunidades *lista,
+    const Catalogo *catalogo,
+    const DadosIdentificados *dados);
+
 void comunidade_destruir(ListaComunidades *lista);
 
 #endif
