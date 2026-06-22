@@ -15,10 +15,10 @@ As estruturas de dados e o parser JSON foram implementados pelo grupo.
 ```text
 data/                           Arquivos de entrada
 include/                        Cabecalhos publicos
+preProcessingPython/            Pasta com o Pré Processamento feito para pegar dados do Wikipedia usando spaCy em Python
 src/                            Codigo-fonte
 tests/                          Testes automatizados
 build/                          Binarios gerados
-preProcessingPython/            Pasta com o Pré Processamento feito para pegar dados do Wikipedia usando spaCy em Python
 SAIDA OBTIDA PELO GRUPO.txt     Arquivo com a saída analisada pelo grupo
 slidesEDA2TemaD.pptx            Slides para apresentação da equipe sobre o projeto
 slidesEDA2TemaD.pdf             Slides para apresentação da equipe sobre o projeto em formato PDF
