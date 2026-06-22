@@ -22,6 +22,8 @@ build/      Binarios gerados
 
 ## Compilacao
 
+O grupo compilou o projeto usando o terminal do linux
+
 No terminal MSYS2 UCRT64:
 
 ```bash
@@ -36,10 +38,10 @@ gcc -std=c11 -Wall -Wextra -Wpedantic -Iinclude src/*.c -o build/grafos_nlp.exe
 
 ## Execucao
 
-informando um arquivo:
+informando um arquivo e gerando um arquivo de saida:
 
 ```powershell
-./build/grafos_nlp.exe data/webscraper_padronizado.json
+./build/grafos_nlp.exe data/webscraper_padronizado.json > saida.txt
 ```
 
 Saida esperada para o arquivo atual:
