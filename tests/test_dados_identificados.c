@@ -86,7 +86,7 @@ static void testar_json_real(void)
     assert(dados_identificados_criar(&origem, &dados));
 
     assert(dados.quantidade_esportes == 75);
-    assert(catalogo_tamanho(dados.catalogo) == 407);
+    assert(catalogo_tamanho(dados.catalogo) == 391);
     assert(catalogo_buscar(
         dados.catalogo,
         "Atletismo",

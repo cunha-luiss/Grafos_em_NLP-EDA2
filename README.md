@@ -46,13 +46,14 @@ Saida esperada para o arquivo atual:
 
 ```text
 Esportes: 75
-Caracteristicas unicas: 332
-Vertices totais: 407
-Associacoes esporte-caracteristica: 797
+Caracteristicas unicas: 316
+Vertices totais: 391
+Associacoes esporte-caracteristica: 1077
 Grafo construido com sucesso!
 Arvore Geradora Maxima construida com sucesso!
+Comparacao esporte-esporte: minimo de 3 caracteristicas em comum (resgate de isolados com 2).
 
-Comunidades:......
+Comunidades detectadas: 18
 ```
 
 ## Testes
@@ -72,6 +73,16 @@ make test
 Os testes cobrem tabela hash, catalogo de IDs, leitura de arquivo, parser JSON,
 extracao dos esportes e integracao completa da aplicacao.
 
+## Pre-processamento
+
+O arquivo `data/webscraper_padronizado.json` foi limpo para remover termos
+genericos e enriquecido com algumas tags semanticas controladas. Para reaplicar
+essas tags:
+
+```powershell
+python preProcessingPython\enriquecer_tags_semanticas.py
+```
+
 ## Contrato Para O Grafo
 
 O modulo `dados_identificados` entrega:
@@ -84,3 +95,7 @@ O modulo `dados_identificados` entrega:
 Esportes e caracteristicas usam IDs globais, mas tipos distintos. Assim,
 o esporte `Atletismo` e a caracteristica `atletismo` sao vertices diferentes.
 
+Para detectar comunidades, o programa monta um grafo adicional ligando
+diretamente dois esportes quando eles compartilham pelo menos 3
+caracteristicas unicas. O peso dessa aresta e a quantidade de
+caracteristicas em comum.
