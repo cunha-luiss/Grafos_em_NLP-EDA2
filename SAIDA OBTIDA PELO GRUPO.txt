@@ -1,0 +1,156 @@
+Arquivo: data/webscraper_padronizado.json
+Esportes: 75
+Caracteristicas unicas: 316
+Vertices totais: 391
+Associacoes esporte-caracteristica: 1077
+Grafo construido com sucesso!
+Associacoes mais frequentes na Wikipedia:
+  Skate - skate: 17
+  Rugby Sevens - rugby: 11
+  Tiro Esportivo - tiro: 10
+  Karatê - arte: 10
+  Hóquei no gelo - gelo: 10
+Arvore Geradora Maxima construida com sucesso!
+Comparacao esporte-esporte: minimo de 3 caracteristicas em comum (resgate de isolados com 2).
+Comunidades detectadas: 18
+
+Comunidade: Atletismo, Maratona Aquática, Triatlo, Nado Artístico, Natação
+  - maratona
+  - corrida
+  - resistencia
+  - água
+  - nadadora
+  - natação
+  - piscina
+
+Comunidade: Badminton, Tênis, Tênis de Mesa, Vôlei de Praia, Squash, Vôlei
+  - raquete
+  - rede
+  - quadra
+  - dupla
+  - saque
+  - tênis
+  - voleibol
+  - vôlei
+
+Comunidade: Basquete, Basquete 3x3
+  - basquete
+  - quadra
+
+Comunidade: Beisebol Softbol, Beisebol5, Cricket, Golfe
+  - beisebol
+  - taco
+  - bola
+  - campo
+  - rebatedor
+
+Comunidade: Biatlo, Tiro com Arco, Combinado nórdico, Salto de esqui, Esqui cross-country
+  - alvo
+  - esqui
+  - inverno
+  - tiro
+  - cross-country
+
+Comunidade: Bobsled, Luge, Skeleton
+  - inverno
+  - gelo
+  - trenó
+
+Comunidade: Boxe, Taekwondo, Luta, Karatê, Judô, Wushu
+  - combate
+  - golpe
+  - punho
+  - técnica
+  - arte
+  - faixa
+  - oponente
+  - luta
+
+Comunidade: Breaking, Ginástica Rítmica, Escalada
+  - dança
+  - música
+  - corda
+  - técnica
+
+Comunidade: Canoagem de Velocidade, Canoagem Slalom
+  - canoa
+  - canoagem
+
+Comunidade: Ciclismo BMX Freestyle, Ciclismo de Pista, Ciclismo de Estrada, Ciclismo BMX Racing, Ciclismo Mountain Bike
+  - bicicleta
+  - bmx
+  - ciclismo
+  - ciclista
+
+Comunidade: Curling, Tiro Esportivo
+  - alvo
+  - pontuação
+
+Comunidade: Esgrima, Pentatlo Moderno
+  - arma
+  - esgrima
+  - lâmina
+
+Comunidade: Esqui alpino, Esqui estilo livre, Esqui de Montanha, Snowboard, Surfe
+  - esqui
+  - velocidade
+  - montanha
+  - descida
+  - neve
+  - encosta
+  - halfpipe
+  - rampa
+  - prancha
+  - surfe
+
+Comunidade: Flag Football, Futebol, Rugby Sevens, Polo Aquático, Futsal
+  - campo
+  - árbitro
+  - futebol
+  - bola oval
+  - baliza
+  - gol
+  - goleiro
+
+Comunidade: Ginástica Acrobática, Saltos Ornamentais, Ginástica Artística, Hipismo, Skate, Ginástica de Trampolim, Levantamento de Peso
+  - agilidade
+  - coordenação
+  - equilíbrio
+  - exercício
+  - flexibilidade
+  - força
+  - ginasta
+  - ginástica
+  - salto
+  - acrobacia
+  - aparelho
+  - barra
+  - cavalo
+  - solo
+  - trampolim
+  - concentração
+
+Comunidade: Handebol, Handebol de Praia, Luta de praia
+  - gol
+  - andebol
+  - handebol
+  - areia
+  - praia
+
+Comunidade: Hóquei no gelo, Lacrosse, Patinação de velocidade em pista curta, Hóquei sobre Grama, Patinação de velocidade, Patinação artística, Patinação de Velocidade Inline
+  - taco
+  - gelo
+  - velocidade
+  - lâmina
+  - baliza
+  - gol
+  - hóquei
+  - patim
+  - patinação
+
+Comunidade: Remo, Vela, Remo costeiro
+  - água
+  - barco
+  - remo
+
+Deteccao de comunidades concluida!
