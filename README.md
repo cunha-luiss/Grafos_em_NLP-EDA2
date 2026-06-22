@@ -1,4 +1,4 @@
-# Grafos em NLP - EDA2
+# Grafos em NLP - EDA2 2026.01
 
 Criação de um algoritmo de Processamento de Linguaggem Natural usando os algoritmos tradicionais (Kruskal, grafos ponderados, hash e heap) em grafos para a matéria EDA2 (2026.1) da FCTE/UnB
 
@@ -24,7 +24,7 @@ slidesEDA2TemaD.pptx            Slides para apresentação da equipe sobre o pro
 slidesEDA2TemaD.pdf             Slides para apresentação da equipe sobre o projeto em formato PDF
 ```
 
-## Compilacao
+## Compilação
 
 O grupo compilou o projeto usando o terminal do linux
 
@@ -40,7 +40,7 @@ No PowerShell:
 gcc -std=c11 -Wall -Wextra -Wpedantic -Iinclude src/*.c -o build/grafos_nlp.exe
 ```
 
-## Execucao
+## Execução
 
 informando um arquivo e gerando um arquivo de saida:
 
