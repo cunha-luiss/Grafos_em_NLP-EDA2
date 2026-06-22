@@ -1,44 +1,101 @@
-# Grafos_em_NLP-EDA2
-Criação de um algoritmo de Processamento de Linguaggem Natural usando os algoritmos tradicionais (PageRank, Kruskal, Jaccard...) em grafos para a matéria EDA2 da FCTE/UnB
+# Grafos em NLP - EDA2
 
-## Commits
+Criação de um algoritmo de Processamento de Linguaggem Natural usando os algoritmos tradicionais (Kruskal, grafos ponderados, hash e heap) em grafos para a matéria EDA2 (2026.1) da FCTE/UnB
 
-Formato:
+## Requisitos
+
+- C17 ou C11 (alterar para o seu em "CFLAGS" no Make)
+- GCC
+- Make, opcional
+
+As estruturas de dados e o parser JSON foram implementados pelo grupo.
+
+## Estrutura
+
+```text
+data/       Arquivos de entrada
+include/    Cabecalhos publicos
+src/        Codigo-fonte
+tests/      Testes automatizados
+build/      Binarios gerados
 ```
-<type>[optional scope]!: <short summary>
 
-[body]
+## Compilacao
+
+No terminal MSYS2 UCRT64:
+
+```bash
+make
 ```
-Tipos comuns: `feat`, `fix`, `docs`, `style`, `refactor`, `build`, `ci`, `add`, `revert`.
 
-Ex.: `feat(api): adiciona rota de login`.
+No PowerShell:
 
-## Branches
-
-Formato:
+```powershell
+gcc -std=c11 -Wall -Wextra -Wpedantic -Iinclude src/*.c -o build/grafos_nlp.exe
 ```
-<type>/<short summary>-<author name>
+
+## Execucao
+
+informando um arquivo:
+
+```powershell
+./build/grafos_nlp.exe data/webscraper_padronizado.json
 ```
-Tipos comuns: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
 
-Ex.: `feat/AdicionaRotaDeLogin-EnzoGabriel`.
+Saida esperada para o arquivo atual:
 
-## Contribuição
+```text
+Esportes: 75
+Caracteristicas unicas: 316
+Vertices totais: 391
+Associacoes esporte-caracteristica: 1077
+Grafo construido com sucesso!
+Arvore Geradora Maxima construida com sucesso!
+Comparacao esporte-esporte: minimo de 3 caracteristicas em comum (resgate de isolados com 2).
 
-Siga o workflow abaixo para contribuir:
+Comunidades detectadas: 18
+```
 
-1. Crie uma branch a partir da `development`:
-    ```bash
-    git checkout dev
-    git pull
-    git checkout -b tipo/SuaFeature-SeuNome
-    ```
+## Testes
 
-2. Faça suas alterações e commits na nova branch.
+No PowerShell:
 
-3. Envie sua branch para o repositório remoto:
-    ```bash
-    git push origin tipo/SuaFeature-SeuNome
-    ```
-4. Abra um Pull Request (PR) da sua branch para a branch `dev` (só ir no site e colocar Base: dev <-- compare: sua-feature).
+```powershell
+.\scripts\testar.ps1
+```
 
+Com Make instalado:
+
+```bash
+make test
+```
+
+Os testes cobrem tabela hash, catalogo de IDs, leitura de arquivo, parser JSON,
+extracao dos esportes e integracao completa da aplicacao.
+
+## Pre-processamento
+
+O arquivo `data/webscraper_padronizado.json` foi limpo para remover termos
+genericos e enriquecido com algumas tags semanticas controladas. Para reaplicar
+essas tags:
+
+```powershell
+python preProcessingPython\enriquecer_tags_semanticas.py
+```
+
+## Contrato Para O Grafo
+
+O modulo `dados_identificados` entrega:
+
+- um catalogo que converte texto e tipo em ID;
+- consulta reversa de ID para texto e tipo;
+- uma lista de esportes identificados;
+- para cada esporte, um vetor com os IDs de suas caracteristicas.
+
+Esportes e caracteristicas usam IDs globais, mas tipos distintos. Assim,
+o esporte `Atletismo` e a caracteristica `atletismo` sao vertices diferentes.
+
+Para detectar comunidades, o programa monta um grafo adicional ligando
+diretamente dois esportes quando eles compartilham pelo menos 3
+caracteristicas unicas. O peso dessa aresta e a quantidade de
+caracteristicas em comum.

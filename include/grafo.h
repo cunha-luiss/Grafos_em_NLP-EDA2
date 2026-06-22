@@ -1,0 +1,57 @@
+#ifndef GRAFO_H
+#define GRAFO_H
+
+#include "catalogo.h"
+#include "dados_identificados.h"
+#include <stddef.h>
+
+typedef struct Aresta
+{
+    int vizinho;
+    int peso;
+    struct Aresta *proxima;
+} Aresta;
+
+typedef struct Grafo
+{
+    size_t quantidade_vertices;
+    Aresta **lista_adj;
+} Grafo;
+
+Grafo *grafo_criar(size_t quantidade_vertices);
+
+void grafo_destruir(Grafo *grafo);
+
+/* Adiciona ou atualiza uma aresta incrementando o peso se ela ja existir.
+ * A aresta sera inserida de forma bidirecional (origem->destino e destino->origem). */
+int grafo_adicionar_aresta(Grafo *grafo, int origem, int destino);
+
+/* Adiciona ou atualiza uma aresta com incremento de peso informado. */
+int grafo_adicionar_aresta_com_peso(
+    Grafo *grafo,
+    int origem,
+    int destino,
+    int peso);
+
+/* Constroi o grafo a partir dos DadosIdentificados parseados. */
+Grafo *grafo_construir_de_dados(
+    const DadosIdentificados *dados,
+    size_t quantidade_vertices);
+
+/* Adiciona arestas Caracteristica <-> Caracteristica ao grafo.
+ * Para cada par de caracteristicas (ci, cj) que co-ocorrem em um mesmo
+ * esporte, incrementa o peso da aresta ci<->cj em 1.
+ * Ao final, peso(ci, cj) = numero de esportes que possuem ambas. */
+void grafo_adicionar_arestas_char_char(
+    Grafo *grafo,
+    const DadosIdentificados *dados);
+
+/* Constroi um grafo Esporte <-> Esporte.
+ * O peso da aresta e a quantidade de caracteristicas unicas em comum.
+ * A aresta so e criada quando esse peso e maior ou igual ao minimo informado. */
+Grafo *grafo_construir_por_caracteristicas_em_comum(
+    const DadosIdentificados *dados,
+    size_t quantidade_vertices,
+    int minimo_caracteristicas_em_comum);
+
+#endif
