@@ -20,8 +20,8 @@ preProcessingPython/            Pasta com o Pré Processamento feito para pegar 
 src/                            Codigo-fonte
 tests/                          Testes automatizados
 SAIDA OBTIDA PELO GRUPO.txt     Arquivo com a saída analisada pelo grupo
-slidesEDA2TemaD.pptx            Slides para apresentação da equipe sobre o projeto
 slidesEDA2TemaD.pdf             Slides para apresentação da equipe sobre o projeto em formato PDF
+slidesEDA2TemaD.pptx            Slides para apresentação da equipe sobre o projeto
 ```
 
 ## Compilação
